@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: yzisis-p <yzisis-p@student.42barcelona.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/19 15:23:08 by yzisis-p          #+#    #+#              #
-#    Updated: 2023/07/27 19:49:22 by yzisis-p         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 SHELL		=	/bin/bash
 
@@ -46,14 +35,12 @@ OBJCL 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCCL_FILES)))
 SRCSV 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCSV_FILES)))
 OBJSV 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCSV_FILES)))
 
-OBJF		=	.cache_exists
-
 all:		$(NAME) $(NAMESV)
 
-$(NAME):	$(OBJCL) $(OBJF)
+$(NAME):	$(OBJCL)
 			@$(CC) $(FLAGS) $(OBJCL) -o $(NAME)
 
-$(NAMESV):	$(OBJSV) $(OBJF)
+$(NAMESV):	$(OBJSV)
 			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
 			@$(ECHO) -n "$(YELLOW)[minitalk]:\t$(DEF_COLOR)"
@@ -70,11 +57,11 @@ $(OBJF):
 			@touch $(OBJF)
 
 clean:
-			@$(RM) $(OBJF)
+			@$(RM) $(OBJ_DIR)*.o
 			@$(ECHO) -n "$(BLUE)[minitalk]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean
-			@$(RM) $(NAME) $(NAMESV) $(NAMEBC) $(NAMEBS)
+			@$(RM) $(NAME) $(NAMESV)
 			@find . -name ".DS_Store" -delete
 			@$(ECHO) -n "$(CYAN)[minitalk]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
